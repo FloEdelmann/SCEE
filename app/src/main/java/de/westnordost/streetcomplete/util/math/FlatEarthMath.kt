@@ -14,9 +14,11 @@ import kotlin.math.sqrt
  * Optimized for performance with precision within 1 m of spherical functions for up to
  * 0.03° difference between points (several km at common latitudes). */
 
-// ~5 times faster than spherical version
-/** Returns the approximate distance from this point to the other point.
- *  Result is within 0.1 m of the spherical version for less than 0.3° difference and EARTH_RADIUS */
+/**
+ * Returns the approximate distance from this point to the other point.
+ * Result is within 0.1 m of the spherical version for less than 0.3° difference and [EARTH_RADIUS].
+ * (~5 times faster than spherical version)
+ */
 fun LatLon.flatDistanceTo(pos: LatLon, globeRadius: Double = EARTH_RADIUS): Double =
     flatAngularDistance(
         latitude.toRadians(),
@@ -25,8 +27,10 @@ fun LatLon.flatDistanceTo(pos: LatLon, globeRadius: Double = EARTH_RADIUS): Doub
         pos.longitude.toRadians()
     ) * globeRadius
 
-// ~10 times faster than spherical version
-/** Returns the shortest distance between this point and the arc between the given points. */
+/**
+ * Returns the shortest distance between this point and the arc between the given points.
+ * (~10 times faster than spherical version)
+ */
 fun LatLon.flatDistanceToArc(start: LatLon, end: LatLon, globeRadius: Double = EARTH_RADIUS): Double {
     val dLongitudeStart = normalizeLongitude(longitude - start.longitude)
     val dLongitudeEnd = normalizeLongitude(longitude - end.longitude)
@@ -65,10 +69,13 @@ private fun flatAngularDistance(φ1: Double, λ1: Double, φ2: Double, λ2: Doub
     return sqrt(δφ * δφ + cosδλ * cosδλ)
 }
 
-/** Returns the shortest distance between point three and the arc/line between point one and two.
- *  Does not take into account wrapping at 180th longitude (handled by flatDistanceToArc)
- *  Contrary to spherical version, the sign is always positive */
-// from http://paulbourke.net/geometry/pointlineplane/ and the linked java implementation
+/**
+ * Returns the shortest distance between point three and the arc/line between point one and two.
+ * Does not take into account wrapping at 180th longitude (handled by [flatDistanceToArc])
+ * Contrary to spherical version, the sign is always positive
+ *
+ * from http://paulbourke.net/geometry/pointlineplane/ and the linked java implementation
+ */
 private fun flatAngularDistanceToArc(φ1: Double, λ1: Double, φ2: Double, λ2: Double, φ3: Double, λ3: Double): Double {
     val δφ12 = φ2 - φ1
     val δλ12 = λ2 - λ1

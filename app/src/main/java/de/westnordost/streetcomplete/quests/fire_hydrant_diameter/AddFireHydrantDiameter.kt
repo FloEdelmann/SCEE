@@ -26,9 +26,12 @@ class AddFireHydrantDiameter : OsmFilterQuestType<FireHydrantDiameterAnswer>() {
     override val isDeleteElementEnabled = true
     override val achievements = listOf(LIFESAVER)
 
-    /* NOTE: if any countries that (sometimes) use anything else than millimeters as hydrant
-       diameters are added, the code in the form needs to be adapted */
-    // source: https://commons.wikimedia.org/wiki/Category:Fire_hydrant_signs_by_country
+    /*
+        NOTE: if any countries that (sometimes) use anything else than millimeters as hydrant
+        diameters are added, the code in the form needs to be adapted.
+
+        source: https://commons.wikimedia.org/wiki/Category:Fire_hydrant_signs_by_country
+     */
     override val enabledInCountries = NoCountriesExcept(
         "DE", "BE", "LU",
         // not "AT", - see https://community.openstreetmap.org/t/streetcomplete-quest-zu-hydrantendurchmesser-in-osterreich/108899

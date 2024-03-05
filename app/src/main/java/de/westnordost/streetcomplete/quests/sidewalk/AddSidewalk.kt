@@ -50,7 +50,7 @@ class AddSidewalk : OsmElementQuestType<LeftAndRightSidewalk> {
     }
 }
 
-// streets that may have sidewalk tagging
+/** streets that may have sidewalk tagging */
 private val roadsFilter by lazy { """
     ways with
       (
@@ -70,8 +70,10 @@ private val roadsFilter by lazy { """
       and access !~ private|no
 """.toElementFilterExpression() }
 
-// streets that do not have sidewalk tagging yet
-/* the filter additionally filters out ways that are unlikely to have sidewalks:
+/**
+ * Streets that do not have sidewalk tagging yet.
+ *
+ * The filter additionally filters out ways that are unlikely to have sidewalks:
  *
  * + unpaved roads
  * + roads that are probably not developed enough to have sidewalk (i.e. country roads)
@@ -79,7 +81,7 @@ private val roadsFilter by lazy { """
  * + Also, anything explicitly tagged as no pedestrians or explicitly tagged that the sidewalk
  *   is mapped as a separate way OR that is tagged with that the cycleway is separate. If the
  *   cycleway is separate, the sidewalk is too for sure
-* */
+ */
 private val untaggedRoadsFilter by lazy { """
     ways with
       highway ~ motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential

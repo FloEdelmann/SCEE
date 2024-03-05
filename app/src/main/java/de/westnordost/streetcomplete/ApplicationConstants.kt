@@ -42,9 +42,11 @@ object ApplicationConstants {
     /** the max age of the undo history - one cannot undo changes older than X  */
     const val MAX_UNDO_HISTORY_AGE = 12L * 60 * 60 * 1000 // 12 hours in ms
 
-    /** The creation of some quests is dependent on surrounding geometry. This constant describes
-     *  the maximum distance surrounding elements may affect whether a quest is created or not */
-    //  e.g. AddRecyclingContainerMaterials, AddCycleway
+    /**
+     * The creation of some quests (e.g. AddRecyclingContainerMaterials, AddCycleway) is dependent
+     * on surrounding geometry. This constant describes the maximum distance surrounding elements
+     * may affect whether a quest is created or not.
+     */
     const val QUEST_FILTER_PADDING = 20.0 // m
 
     const val AVATARS_CACHE_DIRECTORY = "osm_user_avatars"

@@ -24,14 +24,14 @@ val OAUTH2_REQUIRED_SCOPES = listOf(
     "read_prefs",
     "write_api",
     "write_notes",
-    /* the gps traces permissions is only required for "attaching" gpx track recordings
-       to notes. People that feel uneasy to give these permission should still be able to
-       use this app.
-       If those then still use the "attach gpx track recordings" feature and try to upload,
-       they will be prompted to re-authenticate (currently) without further explanation
-       because the OSM API returned a HTTP 403 (forbidden) error.
+    /*
+        the "write_gpx" permissions is only required for "attaching" gpx track recordings
+        to notes. People that feel uneasy to give this permission should still be able to
+        use this app.
+        If those then still use the "attach gpx track recordings" feature and try to upload,
+        they will be prompted to re-authenticate (currently) without further explanation
+        because the OSM API returned a HTTP 403 (forbidden) error.
      */
-    // "write_gpx",
 )
 
 val userModule = module {

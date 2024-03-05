@@ -179,14 +179,14 @@ class CameraManager(private val c: MapController, private val contentResolver: C
         try {
             c.updateCameraPosition(CameraUpdateFactory.newCameraPosition(_tangramCamera))
         } catch (e: NullPointerException) {
-            // ignore
-            /* if tangram cleared some references already, we don't care. This solves the following
-               crash issue:
-               On destroy, all camera animations are cancelled. Cancelling a camera animation
-               however also calls onAnimationEnd once, which in turn updates the camera one last
-               time. Now, it is possible that tangram got the "on destroy"-call first and so already
-               cleared the reference to the map already when the "on destroy" of the camera manager
-               cancels all camera animations.
+            /*
+                if tangram cleared some references already, we don't care. This solves the following
+                crash issue:
+                On destroy, all camera animations are cancelled. Cancelling a camera animation
+                however also calls onAnimationEnd once, which in turn updates the camera one last
+                time. Now, it is possible that tangram got the "on destroy"-call first and so already
+                cleared the reference to the map already when the "on destroy" of the camera manager
+                cancels all camera animations.
              */
         }
     }
